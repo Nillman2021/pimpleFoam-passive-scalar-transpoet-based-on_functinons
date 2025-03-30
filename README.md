@@ -3,7 +3,7 @@
 Here is pimpleFoam files for passive scalar transport analysis basedon functinons models.
 You donot need waste anymore time to fight with reactingFoam or buoyantPimpleFoam.
 Maybe u have already know how to simulate the "passive scalar transport in transient turbulance" process, but the code I shared here just want to help the guys who is the first man need to do some research works in this field.
-he only thing we need to do is add some code in the file:controlDict. This is real simple, bue we may waste one whole week to fight with that.
+The only thing we need to do is add some code in the file——controlDict. This is really simple, bue if there have no help, we may still waste one whole week to fight with that, Odamn, that feeling sooo bad.
 
 # 文件简述
 算例文件在openFoam8环境下使用当然win平台的OF4Win 20.09和ubuntu的openFoam8均可运行，代码只在引入libsolverFunctionObjects动态库时存在微小差别（后缀不同）
