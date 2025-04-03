@@ -1,0 +1,40 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  dev
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+    {
+        name    sourceCells;        // 自定义 cellSet 名称
+        type    cellSet;            // 操作类型为 cellSet
+        action  new;                // 新建集合
+        source  boxToCell;          // 使用立方体选择单元
+        sourceInfo
+        {
+            box (0.5 0.5 0) (0.55 0.55 0.09); // 与 setFields 区域一致
+        }
+    }
+
+    {
+        name    sourceZone;         // cellZone 名称（与 fvOptions 中引用的一致）
+        type    cellZoneSet;           // 操作类型为 cellZone
+        action  new;                // 添加区域
+        source  setToCellZone;      // 从 cellSet 转换
+        sourceInfo
+        {
+            set sourceCells;
+        }
+    }
+);

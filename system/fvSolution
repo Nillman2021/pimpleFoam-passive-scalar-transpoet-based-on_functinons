@@ -1,0 +1,82 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  dev
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    p
+    {
+        solver           GAMG;
+        tolerance        1e-7;
+        relTol           0.01;
+
+        smoother         DICGaussSeidel;
+
+    }
+
+    pFinal
+    {
+        $p;
+        relTol          0;
+    }
+
+    C
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-8;
+        relTol          0;
+        nSweeps         2;
+        minIter         3;
+        
+        // 强制源项处理
+        sourceCorr       true;
+        sourceRelaxation 1.0;
+        consistent       true;
+        explicitSource   true;
+        sourceDdtCoeff   1.0;
+        
+        // 确保每次迭代都应用源项
+        correctSource    true;
+        sourceUpdateInterval 1;
+    }
+
+    "(U|k|epsilon)"
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-05;
+        relTol          0.1;
+    }
+
+    "(U|k|epsilon)Final"
+    {
+        $U;
+        relTol          0;
+    }
+}
+
+PIMPLE
+{
+    nOuterCorrectors     3;    // 增加外迭代次数确保源项充分应用
+    nCorrectors          2;    // 增加内迭代次数
+    nNonOrthogonalCorrectors 2; // 增加非正交修正次数
+    correctPhi           yes; // 启用速度修正
+    consistent          yes;  // 保持一致性
+}
+
+
+// ************************************************************************* //
