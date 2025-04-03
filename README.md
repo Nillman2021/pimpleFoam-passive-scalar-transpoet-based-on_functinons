@@ -1,6 +1,6 @@
 # Discription
 # openFoam8
-Here is pimpleFoam files for passive scalar transport analysis basedon functinons models.
+Here is openFoam files for passive scalar transport analysis basedon functinons models, which use pimpleFoam.
 
 You donot need waste anymore time to fight with reactingFoam or buoyantPimpleFoam.
 
