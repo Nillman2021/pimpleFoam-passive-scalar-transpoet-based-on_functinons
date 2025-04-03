@@ -18,10 +18,13 @@ Win平台的OF4Win 20.09 和 ubuntu的openFoam8 均可运行，代码只在引�
 
 # 文件要点
 为解决在pimpleFoam模块下配置functions(scalarTransport)后，在fvOptions中定义标量源依然无法得到预期效果的情形：其中报错主要包括Source pollutantSource defined for field T but never used之类。
+
 一般情况下，虽在fvOptions中配置k源可以正常运算，但是配置标量源(pimpleFoam-functions-scalarTransport)，就是没法算，可以说是求生不得求死不能。
+
 本算例中，参考了uttamcadambi07的dafoam项目中的Discussions部分，将用于定义标量源数值大小的fvOptions集成到controlDict文件中的functions模块内，从而完成————不修改源码，在pimpleFoam实现求解固定位置标量源瞬态湍流扩散的目的。
 其中，污染源空间区域设置，主要由topoSet文件实现。
 
 # 随意吐槽
 当然比较普遍的内容，deepseek都会告诉你，但是关于在openfoam8内如何在pinpleFoam实现固定浓度标量瞬态扩散仿真，它是真的不知道，或许以后就知道了。
+
 希望遇到类似问题的诸位，以后可以少受点苦，或者早点定课题，有时间可以多看看理论和源码，直接上来搞，的确是非常的不好。
