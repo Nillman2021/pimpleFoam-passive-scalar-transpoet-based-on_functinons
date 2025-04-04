@@ -17,7 +17,7 @@ Win平台的OF4Win 20.09 和 ubuntu的openFoam8 均可运行，代码只在引�
 当然组中有前辈技术传承的诸位，以及可以直接手挫求解器大神，可以直接略过，这个算例只是为了帮助像我一样是组中第一个研究用openfoam搞瞬态湍流场中标量扩散的人。
 
 # 文件要点
-为解决在pimpleFoam模块下配置functions(scalarTransport)后，在fvOptions中定义标量源依然无法得到预期效果的情形：其中报错主要包括Source pollutantSource defined for field T but never used之类。
+为解决在pimpleFoam模块下配置functions(scalarTransport)后，在fvOptions中定义标量源依然无法得到预期效果的情形：其中报错主要包括Source pollutantSource defined for field C but never used之类。
 
 一般情况下，虽在fvOptions中配置k源可以正常运算，但是配置标量源(pimpleFoam-functions-scalarTransport)，就是没法算，可以说是求生不得求死不能。
 
